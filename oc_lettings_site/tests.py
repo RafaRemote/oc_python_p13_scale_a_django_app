@@ -1,2 +1,2 @@
-def test_letting_view():
+def test_dummy():
     assert 1
