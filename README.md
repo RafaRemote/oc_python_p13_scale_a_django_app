@@ -1,6 +1,6 @@
 ## Summary
 
-Holiday lettings website
+Orange County Lettings Website
 
 ## Local development
 
@@ -9,10 +9,10 @@ Holiday lettings website
 - GitHub account with read access to this repository
 - Git CLI
 - SQLite3 CLI
-- Python interpreter, version 3.6 or higher. 
+- Python interpreter, version 3.6 or higher
 
 In the rest of the local development documentation, it is assumed the command `python` in 
-your OS shell runs the above Python interpreter (unless a virtual environment is activated)
+your OS shell runs the above Python interpreter (unless a virtual environment is activated).
 
 ### macOS / Linux
 
@@ -39,8 +39,8 @@ your OS shell runs the above Python interpreter (unless a virtual environment is
 - `source venv/bin/activate`
 - `pip install --requirement requirements.txt`
 - `python manage.py runserver`
-- Go to `http://localhost:8000` in a browser
-- Confirm the site is running and can be navigated (you should see several profiles and lettings)
+- Go to `http://localhost:8000` in a browser.
+- Confirm the site is running and can be navigated (you should see several profiles and lettings).
 
 #### Linting
 
@@ -72,7 +72,7 @@ your OS shell runs the above Python interpreter (unless a virtual environment is
 
 ### Windows
 
-Using PowerShell, as above except
+Using PowerShell, as above except:
 
 - To activate the virtual environment, `.\venv\Scripts\Activate.ps1` 
 - Replace `which <my-command>` with `(Get-Command <my-command>).Path`
