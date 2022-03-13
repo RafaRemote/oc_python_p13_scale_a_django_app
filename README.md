@@ -51,7 +51,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
-- `pytest`
+- `pytest --reuse-db --no-migrations`
 
 #### Base de données
 

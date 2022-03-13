@@ -23,7 +23,8 @@ def move_profiles(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('profiles', '0001_initial')
+        ('profiles', '0001_initial'),
+        ('lettings', '0002_auto_20220313_1215')
     ]
     
     run_before = [
