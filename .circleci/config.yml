@@ -32,6 +32,8 @@ jobs:
   heroku-deploy:
     docker:
       - image: cimg/python:3.9.2
+    environnement:
+      DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE}
     steps:
       - checkout
       - heroku/install
@@ -46,6 +48,7 @@ workflows:
   deploy-application:
     jobs:
       - lint-and-test
+
       - build-and-push:
           requires:
             - lint-and-test
