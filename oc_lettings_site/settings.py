@@ -1,4 +1,20 @@
 import os
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from django.core.exceptions import ImproperlyConfigured
+from django.core.management.utils import get_random_secret_key
+
+
+def get_var(var, default=None):
+    try:
+        return os.environ[var]
+    except KeyError:
+        if default is None:
+            err = "environment variable missing !"
+            raise ImproperlyConfigured(err)
+        else:
+            return default
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -8,12 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+SECRET_KEY = get_var('SECRET_KEY', default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 
 
 # Application definition
@@ -26,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'lettings',
     'profiles',
 ]
@@ -110,3 +127,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+try:
+    sentry_sdk.init(
+        dsn=get_var('DSN', None),
+        integrations=[DjangoIntegration(
+            transaction_style='function_name',
+        )],
+
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )
+except ImproperlyConfigured:
+    pass
