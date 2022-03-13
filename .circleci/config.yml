@@ -29,7 +29,7 @@ jobs:
           image: ${DOCKER_LOGIN}/oc_lettings
       - docker/push:
           image: ${DOCKER_LOGIN}/oc_lettings
-  heroku-deploy:
+  deploy-to-heroku:
     docker:
       - image: cimg/python:3.9.6
     steps:
