@@ -36,11 +36,11 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
-        - post-steps:
-            - run:
-              command: heroku config:set SECRET_KEY=$SECRET_KEY -a orange-county-lettings
-            - run: 
-              command: heroku config:set SENTRY_DSN=$SENTRY_DSN -a orange-county-lettings
+          - post-steps:
+              - run:
+                command: heroku config:set SECRET_KEY=$SECRET_KEY -a oc-lettings
+              - run: 
+                command: heroku config:set DSN=$DSN -a oc-lettings
 
 workflows:
   deploy-application:
