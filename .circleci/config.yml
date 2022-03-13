@@ -33,6 +33,7 @@ jobs:
     docker:
       - image: cimg/python:3.9.2
     steps:
+      - checkout
       - heroku/install
       - heroku/deploy-via-git:
           branch: master
