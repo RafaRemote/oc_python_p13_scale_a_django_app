@@ -62,8 +62,9 @@ workflows:
             branches:
               only: dev
       - lint-and-test:
-          branches:
-            only: master
+          filters:
+            branches:
+              only: master
       - build-and-push:
           requires:
             - lint-and-test
