@@ -29,9 +29,9 @@ jobs:
           image: ${DOCKER_LOGIN}/oc_lettings
       - docker/push:
           image: ${DOCKER_LOGIN}/oc_lettings
-  deploy-to-heroku:
+  heroku-deploy:
     docker:
-      - image: cimg/python:3.9.6
+      - image: cimg/python:3.9.2
     steps:
       - checkout
       - heroku/install
@@ -46,15 +46,10 @@ workflows:
             - lint-and-test
           filters:
             branches:
-              only: master
-      - deploy-to-heroku:
-          pre-steps:
-          - run:
-            command: heroku config:set SECRET_KEY=$SECRET_KEY -a orange-county-lettings
-          - run: 
-            command: heroku config:set SENTRY_DSN=$SENTRY_DSN -a orange-county-lettings
+              only: main
+      - heroku-deploy:
           requires:
-            -  build-and-push
+            - build-and-push
           filters:
             branches:
-              only: master
+              only: main
