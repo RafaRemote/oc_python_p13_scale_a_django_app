@@ -49,9 +49,9 @@ workflows:
               only: master
       - deploy-to-heroku:
           pre-steps:
-          run:
+          - run:
             command: heroku config:set SECRET_KEY=$SECRET_KEY -a orange-county-lettings
-          run: 
+          - run: 
             command: heroku config:set SENTRY_DSN=$SENTRY_DSN -a orange-county-lettings
           requires:
             -  build-and-push-to-docker
