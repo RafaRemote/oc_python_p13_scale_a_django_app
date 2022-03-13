@@ -12,4 +12,4 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['ocletting8.herokuapp.com']
+ALLOWED_HOSTS = ['oclettings22.herokuapp.com']
