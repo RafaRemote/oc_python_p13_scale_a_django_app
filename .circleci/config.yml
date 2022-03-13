@@ -54,7 +54,7 @@ workflows:
           - run: 
             command: heroku config:set SENTRY_DSN=$SENTRY_DSN -a orange-county-lettings
           requires:
-            -  build-and-push-to-docker
+            -  build-and-push
           filters:
             branches:
               only: master
