@@ -6,6 +6,16 @@ orbs:
   heroku: circleci/heroku@1.2.6
 
 jobs:
+  test_dev:
+    docker:
+      - image: cimg/python:3.9.2
+    steps:
+      - checkout
+      - python/install-packages:
+        pkg-manager: pip
+      - run:
+        name: Run testing
+        command: pytest --reuse-db --no-migrations
   lint-and-test:
     docker:
       - image: cimg/python:3.9.2
@@ -47,8 +57,11 @@ jobs:
 workflows:
   deploy-application:
     jobs:
+      - test-dev:
+        filters:
+          branches:
+            only: dev
       - lint-and-test
-
       - build-and-push:
           requires:
             - lint-and-test
