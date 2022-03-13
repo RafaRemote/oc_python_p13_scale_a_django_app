@@ -32,8 +32,6 @@ jobs:
   heroku-deploy:
     docker:
       - image: cimg/python:3.9.2
-    environnement:
-      DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE}
     steps:
       - checkout
       - heroku/install
@@ -43,6 +41,8 @@ jobs:
           command: HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SECRET_KEY=$SECRET_KEY -a oclettings22
       - run: 
           command: HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DSN=$DSN -a oclettings22
+      - run:
+          command: HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE -a oclettings22
 
 workflows:
   deploy-application:
