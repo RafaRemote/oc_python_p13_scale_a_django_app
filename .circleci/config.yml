@@ -58,13 +58,13 @@ workflows:
   deploy-application:
     jobs:
       - test-dev:
-        filters:
-          branches:
-            only: dev
+          filters:
+            branches:
+             only: dev
       - lint-and-test
-        filters:
-          branches:
-            only: master
+          filters:
+           branches:
+              only: master
       - build-and-push:
           requires:
             - lint-and-test
