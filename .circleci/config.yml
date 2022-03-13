@@ -48,7 +48,7 @@ workflows:
             branches:
               only: master
       - deploy-to-heroku:
-          - pre-steps:
+          pre-steps:
             run:
               command: heroku config:set SECRET_KEY=$SECRET_KEY -a orange-county-lettings
             run: 
