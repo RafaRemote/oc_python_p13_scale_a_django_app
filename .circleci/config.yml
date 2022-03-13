@@ -51,10 +51,10 @@ workflows:
             - lint-and-test
           filters:
             branches:
-              only: main
+              only: master
       - heroku-deploy:
           requires:
             - build-and-push
           filters:
             branches:
-              only: main
+              only: master
