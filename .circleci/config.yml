@@ -38,9 +38,9 @@ jobs:
       - heroku/deploy-via-git:
           branch: master
       - run:
-          command: HEROKU_API_KEY=${HEROKU_TOKEN} heroku config:set SECRET_KEY=$SECRET_KEY -a oclettings22
+          command: HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SECRET_KEY=$SECRET_KEY -a oclettings22
       - run: 
-          command: HEROKU_API_KEY=${HEROKU_TOKEN} heroku config:set DSN=$DSN -a oclettings22
+          command: HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DSN=$DSN -a oclettings22
 
 workflows:
   deploy-application:
