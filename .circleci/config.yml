@@ -35,14 +35,7 @@ jobs:
     steps:
       - checkout
       - heroku/install
-      - heroku/deploy-via-git:
-          - post-steps:
-              - run:
-                name: Config Secret
-                command: heroku config:set SECRET_KEY=$SECRET_KEY -a oc-lettings
-              - run:
-                name: Config Sentry
-                command: heroku config:set DSN=$DSN -a oc-lettings
+      - heroku/deploy-via-git
 
 workflows:
   deploy-application:
@@ -54,9 +47,14 @@ workflows:
           filters:
             branches:
               only: master
-      - heroku-deploy:
+      - deploy-to-heroku:
+          - pre-steps:
+            run:
+              command: heroku config:set SECRET_KEY=$SECRET_KEY -a orange-county-lettings
+            run: 
+              command: heroku config:set SENTRY_DSN=$SENTRY_DSN -a orange-county-lettings
           requires:
-            - build-and-push
+            -  build-and-push-to-docker
           filters:
             branches:
               only: master
