@@ -34,7 +34,8 @@ jobs:
       - image: cimg/python:3.9.2
     steps:
       - heroku/install
-      - heroku/deploy-via-git
+      - heroku/deploy-via-git:
+          branch: master
       - run:
           command: HEROKU_API_KEY=${HEROKU_TOKEN} heroku config:set SECRET_KEY=$SECRET_KEY -a oclettings22
       - run: 
@@ -49,7 +50,7 @@ workflows:
             - lint-and-test
           filters:
             branches:
-              only: master
+              only: main
       - heroku-deploy:
           requires:
             - build-and-push
