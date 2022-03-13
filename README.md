@@ -103,11 +103,11 @@ Le workflow comprend un élément nommé `deploy-application`, il comprend les `
 
 Lien pour le Pipeline CircleCi: 
 
-https://app.circleci.com/pipelines/github/RafaRemote/scale_a_django_app?branch=main  
+https://app.circleci.com/pipelines/github/RafaRemote/P13_oc_lettings_site_redone?branch=master  
 
 Lien pour le site déployé sur Heroku:  
 
-https://ocletting7.herokuapp.com/  
+https://oclettings22.herokuapp.com/  
 
 Pour accéder au monitoring Sentry vous devez avoir un compte Sentry, donc si ce n'est pas déjà fait, créer un compte Sentry.  
 
@@ -115,7 +115,7 @@ https://sentry.io/signup/
 
 Une fois que vous avez votre compte: utilisez le lien ci-dessous:  
 
-https://sentry.io/organizations/raphael-vu/issues/?project=6244042  
+https://sentry.io/organizations/raphael-vu/issues/?project=6256844  
 
 Et cliquez sur `Request to join`.  
 
