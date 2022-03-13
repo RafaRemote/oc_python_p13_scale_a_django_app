@@ -1,0 +1,58 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@2.0.1
+  docker: circleci/docker@2.0.2
+  heroku: circleci/heroku@1.2.6
+
+jobs:
+  test-linting:
+    docker:
+      - image: cimg/python:3.9.2
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run linting
+          command: flake8
+  build-and-push:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: ${DOCKER_LOGIN}/oc_lettings
+      - docker/push:
+          image: ${DOCKER_LOGIN}/oc_lettings
+  heroku-deploy:
+    docker:
+      - image: cimg/python:3.9.2
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git
+
+workflows:
+  deploy-application:
+    jobs:
+      - test-linting
+      - python/test:
+          requires:
+            - test-linting
+          version: '3.9.2'
+          pkg-manager: pip
+          args: '-r requirements.txt'
+      - build-and-push:
+          requires:
+            - python/test
+          filters:
+            branches:
+              only: main
+      - heroku-deploy:
+          requires:
+            - build-and-push
+          filters:
+            branches:
+              only: main

@@ -23,8 +23,13 @@ def move_profiles(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('profiles', '0001_initial'),
+        ('profiles', '0001_initial')
     ]
+    
+    run_before = [
+        ('oc_lettings_site', '0003_delete_profile'),
+    ]
+    
 
     operations = [
         migrations.RunPython(move_profiles, migrations.RunPython.noop),
