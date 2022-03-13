@@ -49,9 +49,9 @@ workflows:
               only: master
       - heroku-deploy:
         - pre-steps:
-          run:
+          - run:
             command: heroku config:set SECRET_KEY=$SECRET_KEY -a oclettings22
-          run: 
+          - run: 
             command: heroku config:set DSN=$DSN -a oclettings22
           requires:
             - build-and-push
