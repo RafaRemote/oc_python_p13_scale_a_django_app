@@ -58,9 +58,9 @@ workflows:
   deploy-application:
     jobs:
       - test-dev:
-        filters:
-          branches:
-            only: dev
+          filters:
+            branches:
+              only: dev
       - lint-and-test:
           branches:
             only: master
