@@ -38,8 +38,10 @@ jobs:
       - heroku/deploy-via-git:
           - post-steps:
               - run:
+                name: Config Secret
                 command: heroku config:set SECRET_KEY=$SECRET_KEY -a oc-lettings
-              - run: 
+              - run:
+                name: Config Sentry
                 command: heroku config:set DSN=$DSN -a oc-lettings
 
 workflows:
