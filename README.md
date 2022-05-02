@@ -1,4 +1,6 @@
-[![CircleCI](https://circleci.com/gh/RafaRemote/P13_oc_lettings_site_redone/tree/master.svg?style=svg)](https://circleci.com/gh/RafaRemote/scale_a_django_app/tree/master)
+[![CircleCI](https://circleci.com/gh/RafaRemote/oc_python_p13_scale_a_django_app
+/tree/master.svg?style=svg)](https://circleci.com/gh/RafaRemote/oc_python_p13_scale_a_django_app
+/tree/master)
 
 
 ## Résumé
